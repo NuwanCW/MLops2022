@@ -1,0 +1,19 @@
+# mkdocs.yml
+site_name: MLops
+site_url: http://TBI.com
+repo_url: http://TBI.com
+nav:
+  - Home: index.md
+  - workflows:
+    - main: tagi/main.md
+  - tagifai:
+    - data: tagi/data.md
+    - evaluate: tagi/evaluate.md
+    - predict: tagi/predict.md
+    - train: tagi/train.md
+    - utils: tagi/utils.md
+theme: readthedocs
+plugins:
+  - mkdocstrings
+watch:
+  - .  # reload docs for any file changes

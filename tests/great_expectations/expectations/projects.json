@@ -1,0 +1,21 @@
+{
+  "data_asset_type": null,
+  "expectation_suite_name": "projects",
+  "expectations": [],
+  "ge_cloud_id": null,
+  "meta": {
+    "citations": [
+      {
+        "batch_request": {
+          "data_asset_name": "projects.json",
+          "data_connector_name": "default_inferred_data_connector_name",
+          "datasource_name": "data",
+          "limit": 1000
+        },
+        "citation_date": "2022-08-04T06:50:03.098380Z",
+        "comment": "Created suite added via CLI"
+      }
+    ],
+    "great_expectations_version": "0.15.15"
+  }
+}
