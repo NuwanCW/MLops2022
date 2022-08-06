@@ -1,3 +1,6 @@
+# from starlette.requests import Request
+import json
+import uuid
 from datetime import datetime
 from functools import wraps
 from http import HTTPStatus
@@ -5,11 +8,14 @@ from pathlib import Path
 from typing import Dict
 
 from fastapi import FastAPI, Request
+from redis_om import get_redis_connection
 
 from app.schemas import PredictPayload
 from config import config
 from config.config import logger
 from tagi import main, predict
+
+redis_db = get_redis_connection(host="192.168.1.136", port="6379")
 
 # Define application
 app = FastAPI(
@@ -112,4 +118,9 @@ def _predict(request: Request, payload: PredictPayload) -> Dict:
         "status-code": HTTPStatus.OK,
         "data": {"predictions": predictions},
     }
+
+    k = str(uuid.uuid4())
+    time = datetime.now().isoformat(sep=" ", timespec="milliseconds")
+    d = {"id": k, "time": time, "response": response}
+    redis_db.rpush("pred_data", json.dumps(d))
     return response
